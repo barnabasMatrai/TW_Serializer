@@ -17,6 +17,8 @@
         <Button Content="Previous" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="103,317,0,0" Click="PreviousButton_Click"/>
         <Button Content="Next" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="281,317,0,0" Click="NextButton_Click"/>
         <Button Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="460,317,0,0" Click="SaveButton_Click"/>
+        <Button Content="First" HorizontalAlignment="Left" Margin="628,119,0,0" VerticalAlignment="Top" Width="75" Click="FirstButton_Click"/>
+        <Button Content="Last" HorizontalAlignment="Left" Margin="628,197,0,0" VerticalAlignment="Top" Width="75" Click="LastButton_Click"/>
 
     </Grid>
 </Window>

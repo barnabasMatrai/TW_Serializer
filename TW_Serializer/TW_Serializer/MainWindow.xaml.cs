@@ -101,5 +101,29 @@ namespace TW_Serializer
                 }
             }
         }
+
+        private void FirstButton_Click(object sender, RoutedEventArgs e)
+        {
+            string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
+            string[] files = Directory.GetFiles(directoryPath, "*.dat");
+
+            Person person = Person.Deserialize(files[0]);
+            Name.Text = person.Name;
+            Address.Text = person.Address;
+            Phone.Text = person.PhoneNumber;
+            person.SerialNumber = 1;
+        }
+
+        private void LastButton_Click(object sender, RoutedEventArgs e)
+        {
+            string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
+            string[] files = Directory.GetFiles(directoryPath, "*.dat");
+
+            Person person = Person.Deserialize(files[files.Length - 1]);
+            Name.Text = person.Name;
+            Address.Text = person.Address;
+            Phone.Text = person.PhoneNumber;
+            person.SerialNumber = Person.SerialNumberCounter;
+        }
     }
 }

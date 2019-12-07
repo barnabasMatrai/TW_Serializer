@@ -73,5 +73,10 @@ namespace TW_Serializer
             get { return serialNumber; }
             set { serialNumber = value; }
         }
+
+        public static int SerialNumberCounter
+        {
+            get { return serialNumberCounter; }
+        }
     }
 }
