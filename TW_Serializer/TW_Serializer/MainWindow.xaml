@@ -14,8 +14,8 @@
         <TextBox x:Name="Address" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="432" Margin="103,160,0,0"/>
         <Label Content="Phone" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="103,212,0,0" Width="59"/>
         <TextBox x:Name="Phone" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="432" Margin="103,243,0,0"/>
-        <Button Content="Previous" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="103,317,0,0"/>
-        <Button Content="Next" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="281,317,0,0"/>
+        <Button Content="Previous" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="103,317,0,0" Click="PreviousButton_Click"/>
+        <Button Content="Next" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="281,317,0,0" Click="NextButton_Click"/>
         <Button Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="460,317,0,0" Click="SaveButton_Click"/>
 
     </Grid>

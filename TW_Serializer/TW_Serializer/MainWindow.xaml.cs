@@ -31,9 +31,9 @@ namespace TW_Serializer
             int maximumPersonNumber = 100;
             Person person = new Person(Name.Text, Address.Text, Phone.Text);
 
-            if (Person.SerialNumber < maximumPersonNumber)
+            if (person.SerialNumber < maximumPersonNumber)
             {
-                string fileName = @"\person" + Person.SerialNumber + ".dat";
+                string fileName = @"\person" + person.SerialNumber + ".dat";
                 string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
                 string filePath = directoryPath + fileName;
                 person.Serialize(filePath);
@@ -47,14 +47,58 @@ namespace TW_Serializer
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
-            string fileName = @"\person1.dat";
-            string filePath = directoryPath + fileName;
-            if (File.Exists(filePath))
+            
+            for (int i = 1; i < 100; i++)
             {
-                Person person = Person.Deserialize(filePath);
-                Name.Text = person.Name;
-                Address.Text = person.Address;
-                Phone.Text = person.PhoneNumber;
+                string fileName = @"\person" + i + ".dat";
+                string filePath = directoryPath + fileName;
+                if (File.Exists(filePath))
+                {
+                    Person person = Person.Deserialize(filePath);
+                    Name.Text = person.Name;
+                    Address.Text = person.Address;
+                    Phone.Text = person.PhoneNumber;
+                    person.SerialNumber = i;
+                    break;
+                }
+            }
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
+            string[] files = Directory.GetFiles(directoryPath, "*.dat");
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                if (Person.Deserialize(files[i]).Name == Name.Text && File.Exists(directoryPath + @"\person" + (i + 2) + ".dat"))
+                {
+                    Person person = Person.Deserialize(files[i + 1]);
+                    Name.Text = person.Name;
+                    Address.Text = person.Address;
+                    Phone.Text = person.PhoneNumber;
+                    person.SerialNumber = i + 2;
+                    break;
+                }
+            }
+        }
+
+        private void PreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+            string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
+            string[] files = Directory.GetFiles(directoryPath, "*.dat");
+
+            for (int i = 1; i < files.Length; i++)
+            {
+                if (Person.Deserialize(files[i]).Name == Name.Text && File.Exists(files[i - 1]))
+                {
+                    Person person = Person.Deserialize(files[i - 1]);
+                    Name.Text = person.Name;
+                    Address.Text = person.Address;
+                    Phone.Text = person.PhoneNumber;
+                    person.SerialNumber = i;
+                    break;
+                }
             }
         }
     }

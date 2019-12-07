@@ -10,14 +10,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace TW_Serializer
 {
     [Serializable]
-    class Person
+    class Person : IDeserializationCallback
     {
         private string name;
         private string address;
         private string phoneNumber;
         private DateTime dataRecordingDate;
         [NonSerialized]
-        private static int serialNumber = 0;
+        private static int serialNumberCounter = Directory.GetFiles(@"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer", "*.dat").Length;
+        [NonSerialized]
+        private int serialNumber;
 
         public Person(string name, string address, string phoneNumber)
         {
@@ -25,7 +27,8 @@ namespace TW_Serializer
             this.address = address;
             this.phoneNumber = phoneNumber;
             dataRecordingDate = DateTime.Now;
-            serialNumber++;
+            serialNumberCounter++;
+            serialNumber = serialNumberCounter;
         }
 
         public void Serialize(string filePath)
@@ -46,6 +49,10 @@ namespace TW_Serializer
             return person;
         }
 
+        public void OnDeserialization(object sender)
+        {
+        }
+
         public string Name
         {
             get { return name; }
@@ -61,9 +68,10 @@ namespace TW_Serializer
             get { return phoneNumber; }
         }
 
-        public static int SerialNumber
+        public int SerialNumber
         {
             get { return serialNumber; }
+            set { serialNumber = value; }
         }
     }
 }
