@@ -67,7 +67,7 @@ namespace TW_Serializer
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
-            string[] files = Directory.GetFiles(directoryPath, "*.dat");
+            string[] files = GetDataOfFiles(directoryPath, "dat");
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -86,7 +86,7 @@ namespace TW_Serializer
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
             string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
-            string[] files = Directory.GetFiles(directoryPath, "*.dat");
+            string[] files = GetDataOfFiles(directoryPath, "dat");
 
             for (int i = 1; i < files.Length; i++)
             {
@@ -105,7 +105,7 @@ namespace TW_Serializer
         private void FirstButton_Click(object sender, RoutedEventArgs e)
         {
             string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
-            string[] files = Directory.GetFiles(directoryPath, "*.dat");
+            string[] files = GetDataOfFiles(directoryPath, "dat");
 
             Person person = Person.Deserialize(files[0]);
             Name.Text = person.Name;
@@ -117,13 +117,20 @@ namespace TW_Serializer
         private void LastButton_Click(object sender, RoutedEventArgs e)
         {
             string directoryPath = @"C:\Users\matra\OneDrive\Asztali gép\codecool\TW_assignments\3rd_week\TW_Serializer";
-            string[] files = Directory.GetFiles(directoryPath, "*.dat");
+            string[] files = GetDataOfFiles(directoryPath, "dat");
 
             Person person = Person.Deserialize(files[files.Length - 1]);
             Name.Text = person.Name;
             Address.Text = person.Address;
             Phone.Text = person.PhoneNumber;
             person.SerialNumber = Person.SerialNumberCounter;
+        }
+
+        private string[] GetDataOfFiles(string directoryPath, string extensionOfFiles)
+        {
+            string[] files = Directory.GetFiles(directoryPath, $"*.{extensionOfFiles}");
+
+            return files;
         }
     }
 }
